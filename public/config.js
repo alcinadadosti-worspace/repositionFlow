@@ -3,15 +3,15 @@
 // ==========================================
 
 const CONFIG = {
-  // URL do backend - detecta automaticamente
+  // URL do backend - usa a mesma origem (frontend e backend estão juntos)
   API_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000'  // Desenvolvimento local
-    : 'https://critical-asp-45carloliver-22cbe68a.koyeb.app',  // Produção no Koyeb
+    : window.location.origin,  // Produção - mesma origem (Render)
 
-  // WebSocket URL - detecta automaticamente
+  // WebSocket URL - usa a mesma origem
   WS_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'ws://localhost:3000'  // Desenvolvimento local
-    : 'wss://critical-asp-45carloliver-22cbe68a.koyeb.app'  // Produção no Koyeb (WebSocket seguro)
+    : `wss://${window.location.host}`  // Produção - mesma origem (Render)
 };
 
 // Log da configuração no console para debug
